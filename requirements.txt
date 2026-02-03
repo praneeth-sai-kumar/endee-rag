@@ -1,0 +1,8 @@
+endee
+sentence-transformers
+fastapi
+uvicorn
+sentence-transformers
+torch
+
+
