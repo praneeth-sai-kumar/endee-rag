@@ -7,7 +7,7 @@ The system ingests documents, converts them into vector embeddings using a Huggi
 
 ---
 
-## 🚀 Project Overview
+##  Project Overview
 
 ### Problem Statement
 
@@ -22,7 +22,7 @@ Traditional keyword-based search fails to capture semantic meaning. This project
 
 ---
 
-## 🧠 Key Features
+##  Key Features
 
 - Semantic search over unstructured text
 - Document ingestion pipeline
@@ -33,7 +33,7 @@ Traditional keyword-based search fails to capture semantic meaning. This project
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 Documents (.txt)
 ↓
@@ -49,7 +49,7 @@ User Query → Relevant Chunks
 
 ---
 
-## 🧰 Technology Stack
+##  Technology Stack
 
 - **Vector Database:** Endee
 - **Embeddings:** sentence-transformers (Hugging Face)
@@ -60,7 +60,7 @@ User Query → Relevant Chunks
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 endee-rag/
 │
@@ -79,7 +79,7 @@ endee-rag/
 
 ---
 
-## 📦 How Endee Is Used
+## How Endee Is Used
 
 Endee acts as the **core vector database** in this project.
 
@@ -155,12 +155,43 @@ Swagger UI:
 http://127.0.0.1:8000/docs
 
 🔍 API Usage
-Query Documents
-
+Query Documents:
+Test the Semantic Search Use Case
+I have developed this rag by data of my resume
+example 1:
 POST /query
 
 {
-  "question": "What projects has Praneeth worked on?",
+  "question": "What are his leadership abilities ?",
+  "top_k": 3
+}
+
+Response:
+
+{
+  "results": [
+    {
+      "score": 0.4048610329627991,
+      "text": "Praneeth’s Soft Skills\n\nPublic Speaking\n\nTeam Leadership\n\nEvent Management\n\nResearch & Analytical Thinking",
+      "source": "Praneeth’s Soft Skills.txt"
+    },
+    {
+      "score": 0.19444335997104645,
+      "text": "Praneeth’s Leadership & Activities\n\nEvent Manager – Yoga Club (2023)\n\nManaged planning and execution of a large-scale yoga event.\n\nCoordinated with multiple teams to ensure smooth operations.",
+      "source": "Praneeth’s Leadership & Activities.txt"
+    },
+    {
+      "score": 0.1905701905488968,
+      "text": "Praneeth’s Technical Skills\n\nProgramming Languages\n\nC, C++, Java, Python, JavaScript\n\nWeb Development\n\nReact.js, Express.js, MERN Stack, MongoDB\n\nMachine Learning & AI\n\nDeep Learning, CNNs, LSTM, Transfer Learning\n\nDatabases\n\nMongoDB, SQLite",
+      "source": "Praneeth’s Technical Skills.txt"
+    }
+  ]
+}
+ example 2
+POST /query
+
+{
+  "question": "what are praneeth soft skills ",
   "top_k": 3
 }
 
@@ -170,9 +201,47 @@ Response:
 {
   "results": [
     {
-      "score": 0.63,
-      "text": "Built an AI-based recommendation system...",
-      "source": "praneeth projects.txt"
+      "score": 0.5074287056922913,
+      "text": "Praneeth’s Summary\n\nQuick learner with a curious and analytical mindset, adaptable to challenges, and passionate about emerging technologies such as Artificial Intelligence, Machine Learning, and Full-Stack Development. Strong problem-solving abilities with hands-on experience in building scalable a",
+      "source": "praneeth summary.txt"
+    },
+    {
+      "score": 0.49004215002059937,
+      "text": "Praneeth’s Soft Skills\n\nPublic Speaking\n\nTeam Leadership\n\nEvent Management\n\nResearch & Analytical Thinking",
+      "source": "Praneeth’s Soft Skills.txt"
+    },
+    {
+      "score": 0.40223443508148193,
+      "text": "Praneeth’s Education\n\nBachelor of Technology – Computer Science and Engineering\nSRM University AP | 2022 – 2026\nCGPA: 8.73 / 10\n\nIntermediate (Class XII)\nSri Chaitanya College | 2020 – 2022\nMarks: 804 / 1000\n\nClass X\nRavindhra Bharathi School | 2019 – 2020\nMarks: 590 / 600",
+      "source": "praneeth education.txt"
+    }
+  ]
+}
+example 3:
+
+POST /query
+
+{
+  "question": "what are his technical skills?",
+  "top_k": 3
+}
+Response:
+{
+  "results": [
+    {
+      "score": 0.47029170393943787,
+      "text": "Praneeth’s Technical Skills\n\nProgramming Languages\n\nC, C++, Java, Python, JavaScript\n\nWeb Development\n\nReact.js, Express.js, MERN Stack, MongoDB\n\nMachine Learning & AI\n\nDeep Learning, CNNs, LSTM, Transfer Learning\n\nDatabases\n\nMongoDB, SQLite",
+      "source": "Praneeth’s Technical Skills.txt"
+    },
+    {
+      "score": 0.406768798828125,
+      "text": "Praneeth’s Summary\n\nQuick learner with a curious and analytical mindset, adaptable to challenges, and passionate about emerging technologies such as Artificial Intelligence, Machine Learning, and Full-Stack Development. Strong problem-solving abilities with hands-on experience in building scalable a",
+      "source": "praneeth summary.txt"
+    },
+    {
+      "score": 0.3262439966201782,
+      "text": "es with hands-on experience in building scalable applications and intelligent systems. Seeking opportunities to grow as a Computer Engineer and contribute to impactful technology solutions.",
+      "source": "praneeth summary.txt"
     }
   ]
 }
@@ -185,6 +254,7 @@ Upload a .txt file
 
 File is saved and ingested automatically
 
+
 📊 Notes on Similarity Scores
 
 Similarity scores represent cosine similarity, not accuracy
@@ -193,7 +263,7 @@ Scores around 0.5 – 0.7 are normal for semantically related content
 
 Ranking relevance is more important than absolute score
 
-🔮 Future Improvements
+Future Improvements:
 
 Add LLM-based answer generation (full RAG)
 
@@ -205,7 +275,7 @@ Section-aware retrieval using metadata filters
 
 Hybrid search (dense + sparse)
 
-🧪 Use Cases
+ Use Cases:
 
 Semantic document search
 
@@ -217,11 +287,11 @@ Knowledge base retrieval
 
 AI-powered assistants
 
-📜 License
+ License:
 
 This project is for educational and evaluation purposes.
 
-🙌 Acknowledgements
+ Acknowledgements:
 
 Endee Labs for the vector database
 
